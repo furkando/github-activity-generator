@@ -11,8 +11,8 @@ const commit = (date) => {
   execSeriesOfCommands(
     [
       `echo "${textSwitch}" > commit.txt`,
-      `git add .`,
-      `git commit -m 'Old commit'`,
+      // `git add .`,
+      // `git commit -m 'Old commit'`,
       `GIT_COMMITTER_DATE="${dateString}" git commit --amend --date="${dateString}" --no-edit`,
       `sleep 0.2`,
     ],
@@ -46,5 +46,5 @@ const generateActivity = async (startDate, endDate) => {
 };
 
 (async () => {
-  await generateActivity("2050-01-01 12:00", "2051-01-01 12:00");
+  await generateActivity("1971-01-01 12:00", "1971-01-01 12:00");
 })();
