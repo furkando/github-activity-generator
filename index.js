@@ -3,7 +3,7 @@ import moment from "moment";
 
 let textSwitch = true;
 
-// Mon Mar 7 23:29:49 2022 +0300 => Git date format
+// Mon Mar 8 23:29:49 2022 +0300 => Git date format
 const commit = (date) => {
   const dateString = date.format("ddd MMM D HH:mm:ss Y +0300");
   textSwitch = !textSwitch;
