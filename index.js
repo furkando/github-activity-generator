@@ -43,4 +43,4 @@ const generateActivity = (startDate, endDate) => {
   }
 };
 
-generateActivity("2007-01-01 12:00", "2008-01-01");
+generateActivity("2007-01-01 12:00", "2007-01-02 12:00");
