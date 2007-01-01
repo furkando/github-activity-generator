@@ -19,7 +19,7 @@ const commit = (date) => {
       `git add .`,
       `git commit -m 'Old commit'`,
       `GIT_COMMITTER_DATE="${dateString}" git commit --amend --date="${dateString}" --no-edit`,
-      `sleep 1`,
+      `sleep 0.2`,
     ],
     (err) => {
       if (err) {
@@ -46,7 +46,7 @@ const generateActivity = async (startDate, endDate) => {
     console.log("-----------------------------------------------");
     console.log(`Generating activity for ${m.format("YYYY-MM-DD")}`);
     commit(m);
-    await sleep(2000);
+    await sleep(300);
   }
 };
 
