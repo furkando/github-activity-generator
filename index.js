@@ -11,9 +11,10 @@ const commit = (date) => {
   series(
     [
       `echo "${textSwitch}" > commit.txt`,
-      "git add .",
+      `git add .`,
       `git commit -m 'Old commit'`,
       `GIT_COMMITTER_DATE="${dateString}" git commit --amend --date="${dateString}" --no-edit`,
+      `sleep 1`,
     ],
     (err) => {
       if (err) {
