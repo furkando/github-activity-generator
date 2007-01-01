@@ -3,11 +3,11 @@ import moment from "moment";
 
 let textSwitch = true;
 
-const sleep = (ms) =>
-  new Promise((resolve) => {
+function sleep(ms) {
+  return new Promise((resolve) => {
     setTimeout(resolve, ms);
   });
-
+}
 // Mon Mar 7 23:29:49 2022 +0300 => Git date format
 const commit = (date) => {
   const dateString = date.format("ddd MMM D HH:mm:ss Y +0300");
@@ -52,7 +52,7 @@ const generateActivity = async (startDate, endDate) => {
     console.log("-----------------------------------------------");
     console.log(`Generating activity for ${m.format("YYYY-MM-DD")}`);
     commit(m);
-    await sleep(2);
+    await sleep(2000);
   }
 };
 
