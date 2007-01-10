@@ -24,20 +24,14 @@ const commit = (date) => {
     (err) => {
       if (err) {
         console.log(
-          `Error while generating activity for ${date
-            .clone()
-            .subtract(1, "days")
-            .format("YYYY-MM-DD")} - Error: ${err}`
+          `Error while generating activity for ${date.format(
+            "YYYY-MM-DD"
+          )} - Error: ${err}`
         );
         console.log("-----------------------------------------------");
         return;
       }
-      console.log(
-        `Activity generated for ${date
-          .clone()
-          .subtract(1, "days")
-          .format("YYYY-MM-DD")}`
-      );
+      console.log(`Activity generated for ${date.format("YYYY-MM-DD")}`);
       console.log("-----------------------------------------------");
     }
   );
