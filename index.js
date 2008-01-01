@@ -46,5 +46,5 @@ const generateActivity = async (startDate, endDate) => {
 };
 
 (async () => {
-  await generateActivity("2007-01-01 12:00", "2008-01-01 12:00");
+  await generateActivity("2008-01-01 12:00", "2008-01-02 12:00");
 })();
