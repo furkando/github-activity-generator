@@ -9,9 +9,9 @@ const commit = (date) => {
   textSwitch = !textSwitch;
   series(
     [
-      `echo "${textSwitch}" > commit.txt`,
-      "git add .",
-      `git commit -m 'Old commit'`,
+      //   `echo "${textSwitch}" > commit.txt`,
+      //   "git add .",
+      //   `git commit -m 'Old commit'`,
       `GIT_COMMITTER_DATE="${dateString}" git commit --amend --date="${dateString}" --no-edit`,
     ],
     (err) => {
@@ -33,7 +33,7 @@ const commit = (date) => {
 const generateActivity = (startDate, endDate) => {
   for (
     var m = moment(startDate);
-    m.diff(endDate, "days") <= 0;
+    m.diff(endDate, "days") < 0;
     m.add(1, "days")
   ) {
     console.log("-----------------------------------------------");
@@ -42,4 +42,4 @@ const generateActivity = (startDate, endDate) => {
   }
 };
 
-generateActivity("1996-03-23", "1996-03-23");
+generateActivity("1996-03-23 12:00", "1996-03-23");
