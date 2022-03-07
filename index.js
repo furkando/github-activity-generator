@@ -3,6 +3,11 @@ import moment from "moment";
 
 let textSwitch = true;
 
+const sleep = (ms) =>
+  new Promise((resolve) => {
+    setTimeout(resolve, ms);
+  });
+
 // Mon Mar 7 23:29:49 2022 +0300 => Git date format
 const commit = (date) => {
   const dateString = date.format("ddd MMM D HH:mm:ss Y +0300");
@@ -19,20 +24,26 @@ const commit = (date) => {
     (err) => {
       if (err) {
         console.log(
-          `Error while generating activity for ${date.format(
-            "YYYY-MM-DD"
-          )} - Error: ${err}`
+          `Error while generating activity for ${date
+            .clone()
+            .subtract(1, "days")
+            .format("YYYY-MM-DD")} - Error: ${err}`
         );
         console.log("-----------------------------------------------");
         return;
       }
-      console.log(`Activity generated for ${date.format("YYYY-MM-DD")}`);
+      console.log(
+        `Activity generated for ${date
+          .clone()
+          .subtract(1, "days")
+          .format("YYYY-MM-DD")}`
+      );
       console.log("-----------------------------------------------");
     }
   );
 };
 
-const generateActivity = (startDate, endDate) => {
+const generateActivity = async (startDate, endDate) => {
   for (
     var m = moment(startDate);
     m.diff(endDate, "days") < 0;
@@ -41,7 +52,10 @@ const generateActivity = (startDate, endDate) => {
     console.log("-----------------------------------------------");
     console.log(`Generating activity for ${m.format("YYYY-MM-DD")}`);
     commit(m);
+    await sleep(2);
   }
 };
 
-generateActivity("2007-01-01 12:00", "2007-01-02 12:00");
+(async () => {
+  await generateActivity("2007-01-01 12:00", "2008-01-01 12:00");
+})();
