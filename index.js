@@ -7,12 +7,27 @@ let textSwitch = true;
 const commit = (date) => {
   const dateString = date.format("ddd MMM D HH:mm:ss Y +0300");
   textSwitch = !textSwitch;
-  series([
-    `echo "${textSwitch}" > commit.txt`,
-    "git add -A",
-    `git commit -m "Old commit"`,
-    `GIT_COMMITTER_DATE="${dateString}" git commit --amend --date="${dateString}" --no-edit`,
-  ]);
+  series(
+    [
+      `echo "${textSwitch}" > commit.txt`,
+      "git add .",
+      `git commit -m 'Old commit'`,
+      `GIT_COMMITTER_DATE="${dateString}" git commit --amend --date="${dateString}" --no-edit`,
+    ],
+    (err) => {
+      if (err) {
+        console.log(
+          `Error while generating activity for ${date.format(
+            "YYYY-MM-DD"
+          )} - Error: ${err}`
+        );
+        console.log("-----------------------------------------------");
+        return;
+      }
+      console.log(`Activity generated for ${date.format("YYYY-MM-DD")}`);
+      console.log("-----------------------------------------------");
+    }
+  );
 };
 
 const generateActivity = (startDate, endDate) => {
@@ -21,6 +36,7 @@ const generateActivity = (startDate, endDate) => {
     m.diff(endDate, "days") <= 0;
     m.add(1, "days")
   ) {
+    console.log("-----------------------------------------------");
     console.log(`Generating activity for ${m.format("YYYY-MM-DD")}`);
     commit(m);
   }
