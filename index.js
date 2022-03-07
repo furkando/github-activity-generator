@@ -1,4 +1,4 @@
-import { series } from "./shellHelper";
+import { series } from "./shellHelper.js";
 import moment from "moment";
 
 let textSwitch = 0;
