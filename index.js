@@ -7,6 +7,7 @@ let textSwitch = true;
 const commit = (date) => {
   const dateString = date.format("ddd MMM D HH:mm:ss Y +0300");
   textSwitch = !textSwitch;
+
   series(
     [
       //   `echo "${textSwitch}" > commit.txt`,
