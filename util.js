@@ -1,13 +1,6 @@
 import child_process from "child_process";
-// spawn a child process and execute shell command
-// borrowed from https://github.com/mout/mout/ build script
-// author Miller Medeiros
-// released under MIT License
-// version: 0.1.0 (2013/02/01)
-// execute a single shell command where "cmd" is a string
-export const exec = function (cmd, cb) {
-  // this would be way easier on a shell/bash script :P
 
+const exec = function (cmd, cb) {
   var p = child_process.exec(cmd);
   p.on("exit", function (code) {
     var err = null;
@@ -21,9 +14,9 @@ export const exec = function (cmd, cb) {
     if (cb) cb(err);
   });
 };
+
 // execute multiple commands in series
-// this could be replaced by any flow control lib
-export const series = function (cmds, cb) {
+export const execSeriesOfCommands = function (cmds, cb) {
   var execNext = function () {
     exec(cmds.shift(), function (err) {
       if (err) {
@@ -35,4 +28,10 @@ export const series = function (cmds, cb) {
     });
   };
   execNext();
+};
+
+export const sleep = (ms) => {
+  return new Promise((resolve) => {
+    setTimeout(resolve, ms);
+  });
 };

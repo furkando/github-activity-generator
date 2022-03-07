@@ -1,19 +1,14 @@
-import { series } from "./shellHelper.js";
+import { execSeriesOfCommands, sleep } from "./util.js";
 import moment from "moment";
 
 let textSwitch = true;
 
-function sleep(ms) {
-  return new Promise((resolve) => {
-    setTimeout(resolve, ms);
-  });
-}
 // Mon Mar 7 23:29:49 2022 +0300 => Git date format
 const commit = (date) => {
   const dateString = date.format("ddd MMM D HH:mm:ss Y +0300");
   textSwitch = !textSwitch;
 
-  series(
+  execSeriesOfCommands(
     [
       `echo "${textSwitch}" > commit.txt`,
       `git add .`,
