@@ -8,8 +8,7 @@ import child_process from "child_process";
 export const exec = function (cmd, cb) {
   // this would be way easier on a shell/bash script :P
 
-  var parts = cmd.split(/\s+/g);
-  var p = child_process.spawn(parts[0], parts.slice(1), { stdio: "inherit" });
+  var p = child_process.exec(cmd);
   p.on("exit", function (code) {
     var err = null;
     if (code) {
