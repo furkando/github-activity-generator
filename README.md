@@ -1,6 +1,6 @@
 # Github Activity Creator
 
-Script that generates GitHub activity for given ranges
+Script that generates GitHub activity for given ranges.
 
 ## How To
 
