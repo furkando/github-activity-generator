@@ -11,8 +11,8 @@ const commit = (date) => {
   execSeriesOfCommands(
     [
       `echo "${textSwitch}" > commit.txt`,
-      // `git add .`,
-      // `git commit -m 'Old commit'`,
+      `git add .`,
+      `git commit -m 'Old commit'`,
       `GIT_COMMITTER_DATE="${dateString}" git commit --amend --date="${dateString}" --no-edit`,
       `sleep 0.2`,
     ],
